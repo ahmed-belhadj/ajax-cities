@@ -19,9 +19,18 @@ function displayMatches() {
   const matches = getMatches(this.value, cities);
   const matchesHTML = matches
     .map(location => {
+      const regex = new RegExp(this.value, "gi");
+      const highlightedCity = location.city.replace(
+        regex,
+        `<span class="highlighted">${this.value}</span>`
+      );
+      const highlightedState = location.state.replace(
+        regex,
+        `<span class="highlighted">${this.value}</span>`
+      );
       return `
         <li>
-            <span class="name">${location.city}, ${location.state}</span>
+            <span class="name">${highlightedCity}, ${highlightedState}</span>
             <span class="population">Population: ${location.population}</span>
         </li>
         `;
