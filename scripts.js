@@ -15,6 +15,10 @@ function getMatches(input, cities) {
   });
 }
 
+function numberWithCommas(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function displayMatches() {
   const matches = getMatches(this.value, cities);
   const matchesHTML = matches
@@ -31,7 +35,9 @@ function displayMatches() {
       return `
         <li>
             <span class="name">${highlightedCity}, ${highlightedState}</span>
-            <span class="population">Population: ${location.population}</span>
+            <span class="population">Population: ${numberWithCommas(
+              location.population
+            )}</span>
         </li>
         `;
     })
